@@ -7,6 +7,7 @@ module.exports = {
     path: path.resolve(__dirname, "./static/frontend"),
     filename: "[name].js",
   },
+
   module: {
     rules: [
       {
@@ -21,10 +22,9 @@ module.exports = {
   optimization: {
     minimize: true,
   },
-  mode: "development",
   plugins: [
     new webpack.DefinePlugin({
-      "process.env.NODE_ENV": JSON.stringify('development')
+      "process.env.NODE_ENV": JSON.stringify("development"),
     }),
   ],
 };
