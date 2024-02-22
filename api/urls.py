@@ -16,9 +16,15 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path
-from .views import test
+from rest_framework_simplejwt.views import TokenRefreshView
+from api import views
 
 urlpatterns = [
-    path('test', test),  # Test page
+    path('token/', views.MyTokenObtainPairView.as_view()),
+    path('token/refresh/', TokenRefreshView.as_view()),
+    path('register/', views.RegisterView.as_view()),
+    path('dashboard/', views.dashboard),
+    path('search/', views.search_places),
+    path('survey/', views.survey),
     ]
 
