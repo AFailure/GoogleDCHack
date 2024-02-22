@@ -1,15 +1,11 @@
-import React, {Component} from "react";
-import {render} from "react-dom";
+import React from "react";
 
-export default class App extends Component{
-    constructor(props) {
-        super(props);
-    }
+const App = (props) => {
+  return (
+    <div className="App">
+      <h1>Django React Setup Works</h1>
+    </div>
+  );
+};
 
-    render() {
-        return (<h1> Testing React Code </h1>)
-    }
-}
-
-const appDiv = document.getElementById("app")
-render(<App />, appDiv)
+export default App;
