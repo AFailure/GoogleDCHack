@@ -39,8 +39,13 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+
+    # Local apps
     'api.apps.ApiConfig',
     'frontend.apps.FrontendConfig',
+
+    # Third party apps
+    'rest_framework',
 ]
 
 MIDDLEWARE = [
@@ -191,5 +196,3 @@ JAZZMIN_SETTINGS = {
     "show_collapse": False,
     "open_new_window": False,
 }
-
-JAZZMIN_SETTINGS["show_ui_builder"] = True

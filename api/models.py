@@ -2,6 +2,8 @@ from django.db import models
 from django.contrib.auth.models import AbstractUser
 from django.db.models.signals import post_save
 
+
+
 # Create your models here.
 class User(AbstractUser):
     username = models.CharField(max_length=100, unique=True)
@@ -24,6 +26,7 @@ class Profile(models.Model):
 
     def __str__(self):
         return f'{self.first_name} {self.last_name}'
+
 
 
 def create_user_profile(sender, instance, created,**kwargs):
