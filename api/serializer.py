@@ -15,6 +15,12 @@ class PlaceSearchSerializer(serializers.Serializer):
     queries = serializers.ListField(child=serializers.CharField(max_length=255))
     location = serializers.CharField(max_length=255)
 
+class AIRequestSerializer(serializers.Serializer):
+    context = serializers.CharField(required=False)
+    task = serializers.CharField(required=False)
+    input_data_context = serializers.CharField(required=False)
+    input_data = serializers.CharField(required=False)
+
 
 class MyTokenObtainPairSerializer(TokenObtainPairSerializer):
     @classmethod

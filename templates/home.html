@@ -17,17 +17,68 @@
         <link href="https://fonts.googleapis.com/css2?family=Patua+One&display=swap" rel="stylesheet">
 
         <script>
+            const APIKey = "AIzaSyD-823w2uUvdfj9X6AEGun6UOfh_geoO5Y";
+            const MAXWIDTH = 1600;
+            const MAXHEIGHT = 1600;
+
+
             let overlay = null
             // create overlay which holds search results
-            function search_render(data) {
+            function render_search(data) {
+                console.log('attempting to render: ', data)
+
                 if (overlay) {
                     return
                 }
 
+                const results = data.results
+
                 overlay = document.createElement('div');
 
                 overlay.setAttribute('id', 'overlay-box');
-                document.getElementById('form-div')
+                parentDiv = document.getElementById('form-div')
+
+                document.body.appendChild(overlay)
+
+                for (let i = 0; i < results.length; i++) {
+                    const result = results[i];
+
+                    // create elements
+                    const frame = document.createElement('div');
+                    const image = document.createElement('img');
+                    const title = document.createElement('h1');
+                    const address = document.createElement('p');
+                    const openstatus = document.createElement('p');
+                    const rating = document.createElement('p');
+
+                    frame.setAttribute('class', 'results-frame')
+
+                    image.setAttribute('class', 'results-image')
+                    if (result.photos && result.photos[0] && result.photos[0]["photo_reference"]) {
+                        image.setAttribute('src', `https://maps.googleapis.com/maps/api/place/photo?photo_reference=${result.photos[0]["photo_reference"]}&maxheight=${MAXHEIGHT}&maxwidth=${MAXWIDTH}&key=${APIKey}`);
+                    }
+                    title.setAttribute('class', 'results-title');
+                    address.setAttribute('class', 'results-address');
+                    openstatus.setAttribute('class', 'results-openstatus')
+                    rating.setAttribute('class', 'results-rating')
+
+                    const isOpen = result.opening_hours.open_now;
+
+                    openstatus.setAttribute('color', isOpen ? "#37fa6e" : "#e60e27")
+
+                    title.appendChild(document.createTextNode(result.name))
+                    address.appendChild(document.createTextNode(result.formatted_address))
+                    openstatus.appendChild(document.createTextNode(isOpen ? "Open" : "Closed"))
+                    rating.appendChild(document.createTextNode(`${result.rating}/5 Stars`))
+                    
+
+                    overlay.appendChild(frame);
+                    frame.appendChild(image);
+                    frame.appendChild(title);
+                    frame.appendChild(address);
+                    frame.appendChild(openstatus);
+                    frame.appendChild(rating);
+                }
             }
             
             function search() {
@@ -55,20 +106,14 @@
                 // Make GET request to backend API
                 fetch("http://127.0.0.1:8000/api/search/?" + queryString)
                     .then(response => {
-                    if (response.ok) {
-                        print('server responded:', response.json())
-                        return response.json();
+                    if (response.ok) { 
+                        response.json().then(data => {
+                            render_search(data)
+                        })
                     } else {
                         throw new Error("Network response was not ok.");
                     }
                     })
-                    .then(data => {
-                    // Redirect user to the page where the places are listed
-                    window.location.href = "/places";
-                    })
-                    .catch(error => {
-                    console.error("There was a problem with the fetch operation:", error);
-                    });
             };
         </script>
     </head>

@@ -26,5 +26,6 @@ urlpatterns = [
     path('dashboard/', views.dashboard),
     path('search/', views.search_places),
     path('survey/', views.survey),
+    path("request/", views.ai_request_view),
     ]
 

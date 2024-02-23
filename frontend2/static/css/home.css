@@ -191,10 +191,76 @@ select {
 
 /* overlay */
 #overlay-box {
-    background-color: #1b1b1b;
+    background-color: #131313;
+    z-index: 99;
     position: absolute;
-    width: 75%;
+    width: 80%;
     height: 100%;
     left: 15%;
     top: 100px;
+}
+
+/* results frame*/
+.results-frame {
+    background-color: #1b1b1b;
+    position: relative;
+    width: 75%;
+    height: 200px;
+    left: 15%;
+    padding-top: 20px;
+    padding-bottom: 20px;
+}
+
+.results-image {
+    position: absolute;
+    display: inline-block;
+    width: 200px;
+    height: 200px;
+    left: 25px;
+}
+
+.results-title {
+    position: absolute;
+    display: inline-block;
+    color: #1FFFCB;
+    font-size: 25px;
+    font-family: "Patua One", serif;
+    font-weight: 400;
+    font-style: normal;
+    left: 250px;
+}
+
+.results-address {
+    position: absolute;
+    display: inline-block;
+    color: #FFFFFF;
+    font-size: 18px;
+    font-family: "Patua One", serif;
+    font-weight: 400;
+    font-style: normal;
+    left: 250px;
+    top: 50px;
+}
+
+.results-openstatus {
+    position: absolute;
+    display: inline-block;
+    font-size: 12px;
+    font-family: "Patua One", serif;
+    font-weight: 400;
+    font-style: normal;
+    left: 250px;
+    top: 100px;
+}
+
+.results-rating {
+    color: #ffc403;
+    position: absolute;
+    display: inline-block;
+    font-size: 12px;
+    font-family: "Patua One", serif;
+    font-weight: 400;
+    font-style: normal;
+    left: 250px;
+    top: 75px;
 }
