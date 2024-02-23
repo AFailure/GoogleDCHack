@@ -11,6 +11,12 @@ from django.shortcuts import render, redirect
 from .forms import SurveyForm, ProfileSurveyForm
 import requests
 from django.http import JsonResponse
+# from .utils import initialize_google_client as igc
+
+# from google.auth.credentials import Credentials
+# from google.generativeai import configure
+
+# configure(credentials=Credentials.from_authorized_user_file('dontlook/justkidding/notserious/service.json'))
 
 import pathlib
 import textwrap
@@ -55,9 +61,12 @@ def search_places(request):
     queries = serializer.validated_data['queries']
     location = serializer.validated_data['location']
     url = "https://maps.googleapis.com/maps/api/place/textsearch/json"
+
+    print('location on server: ', location)
+
     params = {
-        'query': " ".join(queries),  # Join multiple queries into a single string
-        'location': location,
+        'query': " ".join(queries) + location,  # Join multiple queries into a single string
+        # 'location': location,
         'wheelchair_accessible_entrance': 'true',
         'key': api_key
     }
@@ -76,6 +85,7 @@ def ai_request_view(request):
         # Deserialize request data
         serializer = AIRequestSerializer(data=request.query_params)
         if serializer.is_valid():
+            igc()
             data = serializer.validated_data
             context = data.get('context', "")
             task = data.get('task', "")
