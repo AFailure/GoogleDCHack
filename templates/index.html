@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Survey Form</title>
+  <style>
+    /* Dark grey and teal color theme */
+    body {
+      background-color: #333;
+      color: #333;
+    }
+
+    .container {
+      max-width: 600px;
+      margin: 0 auto;
+      padding: 20px;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+      background-color: #444; /* Dark grey background */
+    }
+
+    h1 {
+      text-align: center;
+      color: #00bfa5; /* Teal header color */
+    }
+
+    form {
+      display: flex;
+      flex-direction: column;
+    }
+
+    label {
+      margin-bottom: 5px;
+    }
+
+    input[type="text"],
+    input[type="email"],
+    select {
+      width: 100%;
+      padding: 10px;
+      margin-bottom: 15px;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+      background-color: #555; /* Darker grey input background */
+      color: #eee; /* Light text color */
+    }
+
+    input[type="submit"] {
+      background-color: #007bff; /* Teal button background */
+      color: #fff;
+      border: none;
+      border-radius: 5px;
+      padding: 10px;
+      cursor: pointer;
+    }
+
+    input[type="submit"]:hover {
+      background-color: #0056b3; /* Darker teal on hover */
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>Survey Form</h1>
+    <form action="submit_survey.php" method="POST">
+      <label for="name">Name:</label>
+      <input type="text" id="name" name="name" required>
+
+      <label for="email">Email:</label>
+      <input type="email" id="email" name="email" required>
+
+      <label for="location">Location:</label>
+      <input type="text" id="location" name="location" required>
+
+      <label for="disability">Disability Accommodations:</label>
+      <select id="disability" name="disability">
+        <option value="wheelchair">Wheelchair Access</option>
+        <option value="elevator">Elevator</option>
+        <!-- Add more options as needed -->
+      </select>
+
+      <label for="preference">Preference for Sunlight:</label>
+      <select id="preference" name="preference">
+        <option value="yes">Yes</option>
+        <option value="no">No</option>
+        <!-- Add more options as needed -->
+      </select>
+
+      <input type="submit" value="Submit">
+    </form>
+  </div>
+</body>
+</html>
