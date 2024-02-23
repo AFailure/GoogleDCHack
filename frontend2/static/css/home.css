@@ -120,19 +120,49 @@ body {
     text-align: top;
 }
 
+.label-text {
+    position: relative;
+    display: block;
+    left: 12%;
+    color: #FFFFFF;
+    font-size: 15px;
+    font-family: "Patua One", serif;
+    font-weight: 400;
+    font-style: normal;
+}
+
 .text-input {
-    width: 50%;
+    position: relative;
+    display: block;
+    left: 12%;
+    width: 75%;
     height: 20px;
     padding: 10px;
-    border: none;
-    border-bottom: #1FFFCB;
     border-radius: 7px;
     background-color: #151515;
     color: #eee;
 }
 
-input[type="text"],
-input[type="email"],
+.dropdown-input {
+    position: relative;
+    display: block;
+    left: 12%;
+    width: 50%;
+    height: 20px;
+    padding: 10px;
+    border-radius: 7px;
+    background-color: #151515;
+    color: #eee;
+}
+
+input[type="text"] {
+    color: #EEE;
+}
+
+input[type="select"] {
+    color: #EEE;
+}
+
 select {
     width: 100%;
     padding: 10px;
@@ -143,7 +173,10 @@ select {
     color: #eee; /* Light text color */
 }
 
-input[type="submit"] {
+#submit-button {
+    position: relative;
+    display: block;
+    left: 50%;
     background-color: #007bff; /* Teal button background */
     color: #fff;
     border: none;
@@ -152,6 +185,16 @@ input[type="submit"] {
     cursor: pointer;
 }
 
-input[type="submit"]:hover {
+#submit-button:hover {
     background-color: #0056b3; /* Darker teal on hover */
+}
+
+/* overlay */
+#overlay-box {
+    background-color: #1b1b1b;
+    position: absolute;
+    width: 75%;
+    height: 100%;
+    left: 15%;
+    top: 100px;
 }
