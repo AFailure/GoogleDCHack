@@ -63,7 +63,7 @@
 <body>
   <div class="container">
     <h1>Survey Form</h1>
-    <form action="submit_survey.php" method="POST">
+    <form id="surveyForm">
       <label for="name">Name:</label>
       <input type="text" id="name" name="name" required>
 
@@ -73,10 +73,17 @@
       <label for="location">Location:</label>
       <input type="text" id="location" name="location" required>
 
+      <label for="queries">Select queries:</label>
+      <select id="queries" name="queries" multiple>
+        <option value="cafes">Cafes</option>
+        <option value="restaurants">Restaurants</option>
+        <!-- Add more options as needed -->
+      </select>
+
       <label for="disability">Disability Accommodations:</label>
-      <select id="disability" name="disability">
-        <option value="wheelchair">Wheelchair Access</option>
-        <option value="elevator">Elevator</option>
+      <select id="disability" name="wheelchair_accessible_entrance">
+        <option value="true">Wheelchair Access</option>
+        <option value="false">No Wheelchair Access</option>
         <!-- Add more options as needed -->
       </select>
 
@@ -90,5 +97,46 @@
       <input type="submit" value="Submit">
     </form>
   </div>
+
+  <script>
+    // Function to handle form submission
+    document.getElementById("surveyForm").addEventListener("submit", function(event) {
+      event.preventDefault(); // Prevent default form submission
+
+      // Get form data
+      const formData = new FormData(this);
+
+      // Remove name and email from form data
+      formData.delete('name');
+      formData.delete('email');
+      formData.delete('preference');
+
+      // Format location input (e.g., "Washington, D.C.")
+      const locationInput = document.getElementById("location");
+      const formattedLocation = locationInput.value.trim(); // Trim leading and trailing whitespace
+      locationInput.value = formattedLocation; // Update input value
+
+      // Construct query string
+      const queryString = new URLSearchParams(formData).toString();
+      console.log(queryString); // Debugging (remove later
+
+      // Make GET request to backend API
+      fetch("http://127.0.0.1:8000/api/search/?" + queryString)
+        .then(response => {
+          if (response.ok) {
+            return response.json();
+          } else {
+            throw new Error("Network response was not ok.");
+          }
+        })
+        .then(data => {
+          // Redirect user to the page where the places are listed
+          window.location.href = "/places";
+        })
+        .catch(error => {
+          console.error("There was a problem with the fetch operation:", error);
+        });
+    });
+  </script>
 </body>
 </html>
