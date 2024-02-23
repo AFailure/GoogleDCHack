@@ -20,6 +20,6 @@ from .views import index, places, home
 
 urlpatterns = [
     path('', index),
-    path('home', home)
+    path('home', home),
     path('places/', places),
 ]
